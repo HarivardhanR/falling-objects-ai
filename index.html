@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <icon src="favicon.ico" type="image/x-icon" />
+    <script src="lib/p5.min.js"></script>
+    <script src="lib/tf.min.js"></script>
+    <script src="lib/chart.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Falling Objects AI</title>
+  </head>
+  <body>
+    <script src="Brain/Brain.js"></script>
+    <script src="GameLogic/player.js"></script>
+    <script src="GameLogic/brick.js"></script>
+    <script src="AI/neuroEvolution.js"></script>
+    <script src="GameUI/sketch.js"></script>
+
+    <div class="App">
+      <div class="main-header"><h1>Falling Objects AI</h1></div>
+      <div class="algorithm-buttons">
+        <table>
+          <tbody>
+            <tr>
+              <td><button id="human">Human</button></td>
+              <td><button id="neurout">Neuro Evolution(untrained)</button></td>
+              <td><button id="neurot">Neuro Evolution(trained)</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="algorithm-controls">
+        <div class="algorithm-controls-sliders">
+          <table>
+            <tbody>
+              <tr>
+                <td id="population-slider-container">
+                  <label id="population-label">Population: 250</label><br />
+                  <input
+                    id="population-slider"
+                    type="range"
+                    min="2"
+                    max="500"
+                    step="1"
+                    value="250"
+                  />
+                </td>
+                <td id="frequency-slider-container">
+                  <label id="frequency-label">Brick Frequency: 1</label><br />
+                  <input
+                    id="frequency-slider"
+                    type="range"
+                    min="1"
+                    max="50"
+                    step="1"
+                    value="1"
+                  />
+                </td>
+                <td id="speed-slider-container">
+                  <label id="speed-label">Speed: 1x</label><br /><input
+                    id="speed-slider"
+                    type="range"
+                    min="1"
+                    max="10"
+                    step="1"
+                    value="1"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="main-body">
+        <div class="algorithm-info">
+          <div id="human-algorithm-info"></div>
+          <div id="neurot-algorithm-info"></div>
+          <div id="neurout-algorithm-info">
+            <canvas id="average-scores-chart"></canvas>
+          </div>
+        </div>
+        <div id="canvas-container"></div>
+        <div class="algorithm-players-info">
+          <div id="neurot-score-container" style="display: none">
+            <div id="neurot-score">Trained Model Score:</div>
+            <div id="neurot-game-over">Game Over!!!!</div>
+          </div>
+
+          <div id="human-score-container" style="display: none">
+            <div id="human-score">Human Score:</div>
+            <div id="human-game-over">Game Over!!!!</div>
+          </div>
+          <div id="neurout-score-container">
+            <div id="neurout-best-score">Best Score:</div>
+            <div id="neurout-current-score">Current Score:</div>
+            <button onclick="saveModel()">Save Model</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

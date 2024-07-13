@@ -1,0 +1,63 @@
+.App {
+  text-align: center;
+}
+
+body {
+  font-family: "GT Maru", sans-serif !important;
+  font-size: 14px;
+  line-height: calc(50px / 2);
+  padding: 0px;
+  margin: 0px;
+}
+
+.main-header {
+  background: #424242;
+  color: #d97f26;
+  padding: 0 10px 0 20px;
+  text-align: left;
+}
+
+.main-header h1 {
+  margin: 0;
+  padding: 10px 0;
+}
+
+.algorithm-buttons {
+  background: #9e9e9e;
+  color: #000000;
+  padding-left: 10px;
+}
+
+.algorithm-controls {
+  background: #9e9e9e;
+  color: #000000;
+  padding-left: 10px;
+}
+
+.algorithm-controls-sliders label {
+  font-size: 14px;
+  padding-left: 10px;
+}
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+.main-body {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.main-body > div {
+  flex: 1;
+  padding: 10px;
+}
+
+.algorithm-info {
+  text-align: left;
+}
+
+.algorithm-players-info {
+  text-align: left;
+}
