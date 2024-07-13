@@ -8,25 +8,6 @@ Falling Objects AI is a game that demonstrates the power of Neuro Evolution, whe
 
 Explore the game [here](https://harivardhanr.github.io/falling-objects-ai/).
 
-## Game Modes
-
-### Neuro Evolution (Untrained)
-
-In this mode, a population of players starts with no prior knowledge of the game. Over time, they learn to avoid the falling objects and improve their performance. You can adjust various parameters such as:
-
-- **Brick Frequency**: Controls how often the bricks fall.
-- **Population Size**: The number of players in the population.
-
-You can also save a model at any point to preserve the learned behavior. Based on observations, players generally show significant improvement around 300 generations.
-
-### Neuro Evolution (Trained)
-
-In this mode, a saved model is used to play the game. This model has been trained with a brick frequency of 1 and performs well even when the brick frequency is increased up to 40. This demonstrates the capability of the trained AI to adapt to more challenging game conditions.
-
-### Human Mode
-
-In this mode, you can play the game yourself by clicking the "Human" button. Use the left and right arrow keys to move the player and try to avoid the falling objects.
-
 ## How to Play
 
 1. **Neuro Evolution (Untrained)**
