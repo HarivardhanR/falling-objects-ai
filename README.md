@@ -4,6 +4,10 @@
 
 Falling Objects AI is a game that demonstrates the power of Neuro Evolution, where a population of players learns to avoid falling objects over time. This project uses p5.js for the game rendering and TensorFlow.js for the AI models.
 
+## Play the Game
+
+Explore the game [here](https://harivardhanr.github.io/falling-objects-ai/).
+
 ## Game Modes
 
 ### Neuro Evolution (Untrained)
