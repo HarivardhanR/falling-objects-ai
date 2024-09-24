@@ -14,15 +14,15 @@ let generation = 1;
 
 let trainedPlayer;
 
-let playingBy = "neurout";
+let playingBy = 'neurout';
 
 let averageScoresChart;
 
 let humanGameOver, neurotGameOver;
 
 function preload() {
-  playerImg = loadImage("assets/player.svg");
-  brickImage = loadImage("assets/brick.svg");
+  playerImg = loadImage('assets/player.svg');
+  brickImage = loadImage('assets/brick.svg');
   loadTrainedModel();
 }
 
@@ -36,47 +36,47 @@ function debounce(func, wait) {
 
 function hideUnrelatedStuff() {
   const populationSlider = document.getElementById(
-    "population-slider-container"
+    'population-slider-container'
   );
-  const speedSlider = document.getElementById("speed-slider-container");
+  const speedSlider = document.getElementById('speed-slider-container');
 
-  const humanScoreContainer = document.getElementById("human-score-container");
+  const humanScoreContainer = document.getElementById('human-score-container');
   const neurotScoreContainer = document.getElementById(
-    "neurot-score-container"
+    'neurot-score-container'
   );
   const neuroutScoreContainer = document.getElementById(
-    "neurout-score-container"
+    'neurout-score-container'
   );
 
   const neuroutAlgorithmInfo = document.getElementById(
-    "neurout-algorithm-info"
+    'neurout-algorithm-info'
   );
-  if (playingBy === "human") {
-    populationSlider.style.display = "none";
-    speedSlider.style.display = "none";
-    humanScoreContainer.style.display = "block";
-    neurotScoreContainer.style.display = "none";
-    neuroutScoreContainer.style.display = "none";
-    neuroutAlgorithmInfo.style.display = "none";
-  } else if (playingBy === "neurot") {
-    populationSlider.style.display = "none";
-    speedSlider.style.display = "none";
-    humanScoreContainer.style.display = "none";
-    neurotScoreContainer.style.display = "block";
-    neuroutScoreContainer.style.display = "none";
-    neuroutAlgorithmInfo.style.display = "none";
-  } else if (playingBy === "neurout") {
-    populationSlider.style.display = "block";
-    speedSlider.style.display = "block";
-    humanScoreContainer.style.display = "none";
-    neurotScoreContainer.style.display = "none";
-    neuroutScoreContainer.style.display = "block";
-    neuroutAlgorithmInfo.style.display = "block";
+  if (playingBy === 'human') {
+    populationSlider.style.display = 'none';
+    speedSlider.style.display = 'none';
+    humanScoreContainer.style.display = 'block';
+    neurotScoreContainer.style.display = 'none';
+    neuroutScoreContainer.style.display = 'none';
+    neuroutAlgorithmInfo.style.display = 'none';
+  } else if (playingBy === 'neurot') {
+    populationSlider.style.display = 'none';
+    speedSlider.style.display = 'none';
+    humanScoreContainer.style.display = 'none';
+    neurotScoreContainer.style.display = 'block';
+    neuroutScoreContainer.style.display = 'none';
+    neuroutAlgorithmInfo.style.display = 'none';
+  } else if (playingBy === 'neurout') {
+    populationSlider.style.display = 'block';
+    speedSlider.style.display = 'block';
+    humanScoreContainer.style.display = 'none';
+    neurotScoreContainer.style.display = 'none';
+    neuroutScoreContainer.style.display = 'block';
+    neuroutAlgorithmInfo.style.display = 'block';
   }
 }
 
 async function loadTrainedModel() {
-  const model = await tf.loadLayersModel("savedModel/gen-337-model.json");
+  const model = await tf.loadLayersModel('savedModel/gen-521-model.json');
   // console.log("Model loaded:", model);
   const trainedBrain = new Brain(model);
   trainedPlayer = new Player(trainedBrain);
@@ -86,27 +86,27 @@ async function loadTrainedModel() {
 async function saveModel() {
   if (players && players.length > 0) {
     await players[0].brain.model.save(
-      "downloads://gen-" + generation + "-model"
+      'downloads://gen-' + generation + '-model'
     );
   }
 }
 
 function setup() {
   const canvas = createCanvas(600, 400);
-  canvas.parent("canvas-container");
-  tf.setBackend("cpu");
-  const ctx = document.getElementById("average-scores-chart").getContext("2d");
+  canvas.parent('canvas-container');
+  tf.setBackend('cpu');
+  const ctx = document.getElementById('average-scores-chart').getContext('2d');
 
   averageScoresChart = new Chart(ctx, {
-    type: "line",
+    type: 'line',
     data: {
       labels: [],
       datasets: [
         {
-          label: "Average Scores",
+          label: 'Average Scores',
           data: [],
           borderWidth: 1,
-          borderColor: "#d35d6e",
+          borderColor: '#d35d6e',
           pointRadius: 0,
         },
       ],
@@ -120,7 +120,7 @@ function setup() {
         x: {
           title: {
             display: true,
-            text: "Generations",
+            text: 'Generations',
             font: {
               size: 14,
             },
@@ -135,22 +135,22 @@ function setup() {
     },
   });
 
-  humanGameOver = document.getElementById("human-game-over");
-  neurotGameOver = document.getElementById("neurot-game-over");
+  humanGameOver = document.getElementById('human-game-over');
+  neurotGameOver = document.getElementById('neurot-game-over');
 
-  speedSlider = document.getElementById("speed-slider");
-  const speedLabel = document.getElementById("speed-label");
-  populationSlider = document.getElementById("population-slider");
-  const populationLabel = document.getElementById("population-label");
-  frequencySlider = document.getElementById("frequency-slider");
-  const frequencyLabel = document.getElementById("frequency-label");
+  speedSlider = document.getElementById('speed-slider');
+  const speedLabel = document.getElementById('speed-label');
+  populationSlider = document.getElementById('population-slider');
+  const populationLabel = document.getElementById('population-label');
+  frequencySlider = document.getElementById('frequency-slider');
+  const frequencyLabel = document.getElementById('frequency-label');
 
-  speedSlider.addEventListener("input", () => {
+  speedSlider.addEventListener('input', () => {
     speedLabel.innerText = `Speed: ${speedSlider.value}x`;
   });
 
   populationSlider.addEventListener(
-    "input",
+    'input',
     debounce(() => {
       populationLabel.innerText = `Population: ${populationSlider.value}`;
       TOTAL = parseInt(populationSlider.value);
@@ -159,7 +159,7 @@ function setup() {
   );
 
   frequencySlider.addEventListener(
-    "input",
+    'input',
     debounce(() => {
       frequencyLabel.innerText = `Brick Frequency: ${frequencySlider.value}`;
       frequency = 76 - parseInt(frequencySlider.value);
@@ -167,23 +167,23 @@ function setup() {
     }, 300)
   );
 
-  document.getElementById("human").addEventListener("click", () => {
+  document.getElementById('human').addEventListener('click', () => {
     drawFunction = humanDraw;
-    playingBy = "human";
+    playingBy = 'human';
     resetPopulation();
     hideUnrelatedStuff();
   });
 
-  document.getElementById("neurout").addEventListener("click", () => {
+  document.getElementById('neurout').addEventListener('click', () => {
     drawFunction = neuroEvolutionUntrainedDraw;
-    playingBy = "neurout";
+    playingBy = 'neurout';
     resetPopulation();
     hideUnrelatedStuff();
   });
 
-  document.getElementById("neurot").addEventListener("click", () => {
+  document.getElementById('neurot').addEventListener('click', () => {
     drawFunction = neuroEvolutionTrainedDraw;
-    playingBy = "neurot";
+    playingBy = 'neurot';
     resetPopulation();
     hideUnrelatedStuff();
   });
@@ -205,8 +205,8 @@ function resetPopulation() {
     }
   }
 
-  humanGameOver.style.display = "none";
-  neurotGameOver.style.display = "none";
+  humanGameOver.style.display = 'none';
+  neurotGameOver.style.display = 'none';
 
   if (trainedPlayer) {
     trainedPlayer.score = 0;
@@ -227,9 +227,9 @@ function resetPopulation() {
   averageScoresChart.update();
 
   let playerCount;
-  if (playingBy === "human") {
+  if (playingBy === 'human') {
     playerCount = 1;
-  } else if (playingBy === "neurot") {
+  } else if (playingBy === 'neurot') {
     playerCount = 0;
   } else {
     playerCount = TOTAL;
@@ -279,7 +279,7 @@ function neuroEvolutionUntrainedDraw() {
     }
   }
 
-  background("#e0e0e0");
+  background('#e0e0e0');
 
   for (let player of players) {
     player.show();
@@ -289,10 +289,10 @@ function neuroEvolutionUntrainedDraw() {
     brick.show();
   }
   document.getElementById(
-    "neurout-best-score"
+    'neurout-best-score'
   ).textContent = `Best Score: ${neuroutBestScore}`;
   document.getElementById(
-    "neurout-current-score"
+    'neurout-current-score'
   ).textContent = `Current Score: ${players[0].score}`;
 
   if (players[0].score > neuroutBestScore) {
@@ -327,7 +327,7 @@ function humanDraw() {
 
     if (bricks[i].hits(players[0]) || players[0].killed(600)) {
       noLoop(); // Game over
-      humanGameOver.style.display = "block";
+      humanGameOver.style.display = 'block';
     }
 
     if (bricks[i].offscreen()) {
@@ -343,14 +343,14 @@ function humanDraw() {
 
   players[0].update();
 
-  background("#e0e0e0");
+  background('#e0e0e0');
   players[0].show();
 
   for (let brick of bricks) {
     brick.show();
   }
   document.getElementById(
-    "human-score"
+    'human-score'
   ).textContent = `Human Score: ${players[0].score}`;
 }
 
@@ -366,7 +366,7 @@ function neuroEvolutionTrainedDraw() {
 
       if (bricks[i].hits(trainedPlayer) || trainedPlayer.killed(600)) {
         noLoop(); // Game over
-        neurotGameOver.style.display = "block";
+        neurotGameOver.style.display = 'block';
       }
 
       if (bricks[i].offscreen()) {
@@ -377,14 +377,14 @@ function neuroEvolutionTrainedDraw() {
     trainedPlayer.think(bricks);
     trainedPlayer.update();
 
-    background("#e0e0e0");
+    background('#e0e0e0');
     trainedPlayer.show();
 
     for (let brick of bricks) {
       brick.show();
     }
     document.getElementById(
-      "neurot-score"
+      'neurot-score'
     ).textContent = `Trained Model Score: ${trainedPlayer.score}`;
   }
 }
