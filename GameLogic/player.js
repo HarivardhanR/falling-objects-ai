@@ -14,6 +14,11 @@ class Player {
     this.fitness = 0;
   }
 
+  resetPosition() {
+    this.y = height - 16;
+    this.x = width / 2;
+  }
+
   dispose() {
     this.brain.dispose();
   }

@@ -210,6 +210,7 @@ function resetPopulation() {
 
   if (trainedPlayer) {
     trainedPlayer.score = 0;
+    trainedPlayer.resetPosition();
   }
 
   players = [];
