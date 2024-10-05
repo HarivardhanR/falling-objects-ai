@@ -16,7 +16,7 @@ let trainedPlayer;
 
 let playingBy = 'neurout';
 
-let averageScoresChart;
+let bestScoresChart;
 
 let humanGameOver, neurotGameOver;
 
@@ -97,13 +97,13 @@ function setup() {
   tf.setBackend('cpu');
   const ctx = document.getElementById('average-scores-chart').getContext('2d');
 
-  averageScoresChart = new Chart(ctx, {
+  bestScoresChart = new Chart(ctx, {
     type: 'line',
     data: {
       labels: [],
       datasets: [
         {
-          label: 'Average Scores',
+          label: 'Best Score',
           data: [],
           borderWidth: 1,
           borderColor: '#d35d6e',
@@ -220,11 +220,11 @@ function resetPopulation() {
 
   generation = 1;
 
-  averageScoresChart.data.datasets.forEach((dataset) => {
+  bestScoresChart.data.datasets.forEach((dataset) => {
     dataset.data = [];
   });
-  averageScoresChart.data.labels = [];
-  averageScoresChart.update();
+  bestScoresChart.data.labels = [];
+  bestScoresChart.update();
 
   let playerCount;
   if (playingBy === 'human') {
@@ -272,7 +272,7 @@ function neuroEvolutionUntrainedDraw() {
 
     if (players.length === 0) {
       counter = 0;
-      calculateAverageScore();
+      calculateBestScore();
       nextGeneration();
       bricks = [];
       generation++;
@@ -300,20 +300,21 @@ function neuroEvolutionUntrainedDraw() {
   }
 }
 
-function calculateAverageScore() {
-  let sum = 0;
+function calculateBestScore() {
+  let bestScore = 0;
   for (let player of savedPlayers) {
-    sum += player.score;
+    if (player.score > bestScore) {
+      bestScore = player.score;
+    }
   }
-  const averageScore =
-    savedPlayers.length > 0 ? Math.floor(sum / savedPlayers.length) : 0;
 
-  updateChart(averageScore);
+  updateChart(bestScore);
 }
-function updateChart(averageScore) {
-  averageScoresChart.data.labels.push(generation);
-  averageScoresChart.data.datasets[0].data.push(averageScore);
-  averageScoresChart.update();
+
+function updateChart(bestScore) {
+  bestScoresChart.data.labels.push(generation);
+  bestScoresChart.data.datasets[0].data.push(bestScore);
+  bestScoresChart.update();
 }
 
 function humanDraw() {
