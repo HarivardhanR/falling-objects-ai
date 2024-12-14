@@ -76,7 +76,7 @@ function hideUnrelatedStuff() {
 }
 
 async function loadTrainedModel() {
-  const model = await tf.loadLayersModel('savedModel/gen-337-model.json');
+  const model = await tf.loadLayersModel('savedModel/gen-2548-model.json');
   // console.log("Model loaded:", model);
   const trainedBrain = new Brain(model);
   trainedPlayer = new Player(trainedBrain);
